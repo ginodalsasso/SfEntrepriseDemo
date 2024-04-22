@@ -13,6 +13,13 @@
         {% endblock %}
     </head>
     <body>
+        <nav>
+            <ul>
+                {# le path d'un lien se trouve dans la route du controller concerné ('name') #}
+                <li><a href="{{ path('app_entreprise') }}">Liste des entreprises</a></li>
+                <li><a href="{{ path('app_employe') }}">Liste des employés</a></li>
+            </ul>
+        </nav>
         {% block body %}{% endblock %}
     </body>
 </html>
