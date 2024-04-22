@@ -24,11 +24,14 @@ class EmployeController extends AbstractController
         ]);
     }
     
-    // Affichage de mon form d'ajout
+    // ajout, modification de mon employé
     #[Route('/employe/new', name: 'new_employe')]
-    public function new(Request $request, EntityManagerInterface $entityManager): Response
+    #[Route('/employe/{id}/edit', name: 'edit_employe')]
+    public function new_edit(Employe $employe = null, Request $request, EntityManagerInterface $entityManager): Response
     {
-        $employe = new Employe();
+        if(!$employe){
+            $employe = new Employe();
+        }
         
         $form = $this->createForm(EmployeType::class, $employe);
         
@@ -47,11 +50,22 @@ class EmployeController extends AbstractController
         }
         return $this->render('employe/new.html.twig', [
             'formAddEmploye' => $form,
+            'edit' => $employe -> getId()
         ]);
     }
     
+    // suppression d'un employé
+    #[Route('/employe/{id}', name: 'delete_employe')]
+    public function delete(Employe $employe, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($employe);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_employe');
+    }
+
     // la route récupère l'id de l'objet que nous souhaitons
-    #[Route('/employe/{id}', name: 'show_employe')]
+    #[Route('/employe/{id}/delete', name: 'show_employe')]
     // en argument nous metton l'objet grace auquel nous récupérons l'id et ses propriétées
     public function show(Employe $employe): Response
     {

@@ -3,7 +3,12 @@
 {% block title %}Ajouter un employé{% endblock %}
 
 {% block body %}
-    <h1>Ajouter un employé</h1>
+    {# si edit = true alors #}
+    {% if edit %}
+        <h1>Editer un employé</h1>    
+    {% else %}
+        <h1>Ajouter un employé</h1>
+    {% endif %}
 
     {{ form_start(formAddEmploye) }}
         <div class="row">

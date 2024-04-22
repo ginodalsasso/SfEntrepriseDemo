@@ -40,6 +40,8 @@ class EmployeType extends AbstractType
                     ]
             ])
             ->add('ville', TextType::class, [
+                // Permet de rendre l'input ville null sans accroc
+                'required' => false,
                 'attr' => [
                     'class' => 'form-control' //l'ajout d'une classe se fait ici pour le formulaire
                     ]

@@ -56,6 +56,16 @@ class EntrepriseController extends AbstractController
             'edit' => $entreprise -> getId()
         ]);
     }
+
+    // suppression d'une entreprise
+    #[Route('/entreprise/{id}', name: 'delete_entreprise')]
+    public function delete(Entreprise $entreprise, EntityManagerInterface $entityManager)
+    {
+        $entityManager->remove($entreprise);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('app_entreprise');
+    }
     
     // la route récupère l'id de l'objet que nous souhaitons
     #[Route('/entreprise/{id}', name: 'show_entreprise')]

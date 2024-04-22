@@ -5,8 +5,14 @@
 {% block body %}
     <h1>Liste des employés</h1>
 
+    <a href="{{ path('new_employe')}}" class="btn btn-success">Ajouter un employé</a> <br>
+
+
     {% for employe in employes %}
-    {# Chainage, qui me permet de récupérer la raison sociale de l'employé  #}
-       <a href="{{ path('show_employe', {'id':employe.id})}}"> {{ employe }}</a>({{ employe.entreprise.raisonSociale }})<br>
+        {# Chainage, qui me permet de récupérer la raison sociale de l'employé  #}
+        <a href="{{ path('show_employe', {'id':employe.id})}}">{{ employe }}</a>({{ employe.entreprise.raisonSociale }})
+        <a class='btn btn-warning' href="{{ path('edit_employe', {'id': employe.id}) }}">Edit</a>
+        <a class='btn btn-danger' href="{{ path('delete_employe', {'id': employe.id}) }}">Supp</a>
+        <br>
     {% endfor %}
 {% endblock %}

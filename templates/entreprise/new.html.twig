@@ -3,7 +3,7 @@
 {% block title %}Ajouter une entreprise{% endblock %}
 
 {% block body %}
-
+    {# si edit = true alors #}
     {% if edit %}
         <h1>Editer une entreprise</h1>    
     {% else %}
@@ -18,8 +18,7 @@
         <div class="row">
             <div class="col-sm">
                 {{ form_row(formAddEntreprise.adresse) }}
-            </div>
-                
+            </div>      
             <div class="col-sm">  
                 {{ form_row(formAddEntreprise.cp) }}
             </div>
