@@ -4,8 +4,10 @@ namespace App\Controller;
 
 
 use App\Entity\Entreprise;
+use App\Form\EntrepriseType;
 use App\Repository\EntrepriseRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -24,6 +26,19 @@ class EntrepriseController extends AbstractController
         ]);
     }
 
+    // Affichage de mon form d'ajout
+    #[Route('/entreprise/new', name: 'new_entreprise')]
+    public function new(Request $request): Response
+    {
+        $entreprise = new Entreprise();
+        
+        $form = $this->createForm(EntrepriseType::class, $entreprise);
+        
+        return $this->render('entreprise/new.html.twig', [
+            'formAddEntreprise' => $form,
+        ]);
+    }
+    
     // la route récupère l'id de l'objet que nous souhaitons
     #[Route('/entreprise/{id}', name: 'show_entreprise')]
     // en argument nous metton l'objet grace auquel nous récupérons l'id et ses propriétées

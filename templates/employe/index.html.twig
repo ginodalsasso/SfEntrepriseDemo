@@ -7,6 +7,6 @@
 
     {% for employe in employes %}
     {# Chainage, qui me permet de récupérer la raison sociale de l'employé  #}
-       <a href=""> {{ employe }}</a>({{ employe.entreprise.raisonSociale }})<br>
+       <a href="{{ path('show_employe', {'id':employe.id})}}"> {{ employe }}</a>({{ employe.entreprise.raisonSociale }})<br>
     {% endfor %}
 {% endblock %}
